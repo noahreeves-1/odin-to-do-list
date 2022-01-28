@@ -1,0 +1,35 @@
+.add-new-project-div {
+    width: 13rem;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-project {
+    width: 12rem;
+}
+
+.submit-project {
+    width: 12.5rem;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    
+    width: 12rem;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem 0rem;
+}
+
+.list:hover {
+    background-color: lightblue;
+}
+
+.delete-project-icon {
+    margin-right: 0.5rem;
+}
+
+.delete-project-icon:hover {
+    
+}
