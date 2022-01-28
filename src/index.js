@@ -147,3 +147,5 @@ submitNewProject.addEventListener('click', e => {
 
     addProjectInput.value = ''; // empty the input box after submitting
 });
+
+localStorage.clear();
