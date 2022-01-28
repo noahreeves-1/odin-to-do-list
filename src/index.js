@@ -41,7 +41,13 @@ function projectsFromLocalStorage() {
     // TRY THIS
     // use localstorage keys and values to create projectsArray
     // create an array of keys... Object.keys(localStorage);
-    // for (var i in localStorage) {}???
+
+    // for (var i in localStorage) {}
+    // or...
+    // const keys = Object.keys(localStorage)
+    // for (let key of keys) {}
+
+    // maybe try using .map
     
     for (let i = 0; i < localStorage.length; i++) {
         const newListItem = document.createElement('li');
