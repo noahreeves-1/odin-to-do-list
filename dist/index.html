@@ -10,13 +10,34 @@
 
 <body>
 
-    <script src="bundle.js" defer></script>
+    <script defer src="bundle.js"></script>
 
-    <ul class="projects"></ul>
-    <div class="add-new-project-div">
-        <input class="add-project">
-        <input class="submit-project" type="submit" value="Add New List">
+    <div class="main-container">
+        <div class="projects-container">
+            <ul id="all-projects" class="projects-list" data-all-projects></ul>
+
+            <form class="new-project-form">
+                <input class="new-project-input" type="text" placeholder="New Project Name">
+                <button class="create-project-btn">Add New Project</button>
+            </form>
+        </div>
+
+        <div class="tasks-container">
+            <div class="project-container-title"></div>
+
+            <ul class="all-tasks" data-all-tasks>
+                <li class="task task-complete">task 1</li>
+                <li class="task">task 2</li>
+                <li class="task">task 3</li>
+            </ul>
+
+            <form class="new-task-form">
+                <button class="create-task-btn">+</button>
+                <input class="new-task-input" type="text" placeholder="New Task Name">
+            </form>
+        </div>
     </div>
+    
     
 </body>
 

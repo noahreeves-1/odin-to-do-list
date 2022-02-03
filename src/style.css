@@ -1,35 +1,19 @@
-.add-new-project-div {
-    width: 13rem;
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.add-project {
-    width: 12rem;
-}
-
-.submit-project {
-    width: 12.5rem;
-}
-
-.list {
+.main-container {
     display: flex;
     justify-content: space-between;
-    
-    width: 12rem;
-    margin: 0.5rem 0rem;
-    padding: 0.5rem 0rem;
 }
 
-.list:hover {
-    background-color: lightblue;
+.projects-container {
+    width: 20rem;
+    margin-left: 1rem;
 }
 
-.delete-project-icon {
-    margin-right: 0.5rem;
+.active-project {
+    font-weight: bold;
 }
 
-.delete-project-icon:hover {
-    
+.tasks-container {
+    width: 30rem;;
+    margin-right: 1rem;
+    background-color: lightgray;
 }

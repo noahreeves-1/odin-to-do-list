@@ -1,151 +1,152 @@
 import './style.css';
 
-let projectsArray = ['Main'];
+const allProjects = document.querySelector('[data-all-projects]');
+const newProjectForm = document.querySelector('.new-project-form');
+const newProjectInput = document.querySelector('.new-project-input');
 
-// SAVE FOR LATER
-class Task {
-    constructor (name, description, dueDate, priority, project) {
+const projectContainerTitle = document.querySelector('.project-container-title');
+const tasksContainer = document.querySelector('.tasks-container')
+let allTasks = document.querySelector('.all-tasks');
+const newTaskForm = document.querySelector('.new-task-form');
+const newTaskInput = document.querySelector('.new-task-input');
+
+class Project {
+
+    constructor(name) {
+        this.id = Math.random();
         this.name = name;
+        this.tasks = []
+    }
+
+    setName(name) {
+        this.name = name;
+    }
+
+};
+
+class Task {
+
+    constructor(description, dueDate, priority) {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.project = project;
-        this.done = 0;
+        this.complete = 0;
+    }
+
+};
+
+// DEFAULT project. Cannot delete
+const mainProject = new Project('Main');
+
+// localstorage key for main project array
+const LOCAL_STORAGE_KEY = 'task.projects';
+const LOCAL_STORAGE_SELECTED_ID_KEY = 'task.selectedId';
+
+// get projects array from localstorage, else populate with default project
+const projectsArray = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [mainProject];
+
+// get selected project ID
+let selectedProjectID = localStorage.getItem(LOCAL_STORAGE_SELECTED_ID_KEY);
+
+// create new project, push to projects array, add to localstorage
+newProjectForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (newProjectInput.value === null || newProjectInput.value === '') return;
+    const projectName = newProjectInput.value;
+    const newProject = new Project(projectName);
+    projectsArray.push(newProject);
+    saveAndRender();
+    newProjectInput.value = '';
+});
+
+// select an active project and save the project ID as selected ID in localstorage
+allProjects.addEventListener('click', e => {
+    if (e.target.tagName.toLowerCase() === 'li') {
+        selectedProjectID = e.target.dataset.projectId;
+        saveAndRender();
+    }
+})
+
+newTaskForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (newTaskInput.value === null || newTaskInput.value === '') {
+        return // do nothing if the input field is blank
+    }
+    const taskName = newTaskInput.value;
+    const dueDate = today().date();
+    const newTask = new Task(taskName, )
+})
+
+function saveAndRender() {
+    save();
+    render();
+};
+
+saveAndRender();
+
+// saves newly created projects into localStorage
+function save() {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(projectsArray));
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_ID_KEY, selectedProjectID);
+};
+
+// renders what is in projectsArray
+function render() {
+    removeAllChildNodes(allProjects);
+    renderProjects();
+    renderTasks();
+
+    console.log(projectsArray);
+    console.log(localStorage);
+};
+
+function renderTasks() {
+    if (selectedProjectID !== "null") {
+        tasksContainer.style.display = "block"
+
+        // for the project that has the same ID as the selectedProjectId
+        // change the title, and list the tasks from the array in the project object
+        for (let i = 0; i < projectsArray.length; i++) {
+            if (projectsArray[i].id == selectedProjectID) {
+                // remove title
+                removeAllChildNodes(projectContainerTitle);
+                // create new title
+                const projectTitle = document.createElement('div');
+                projectTitle.innerText = projectsArray[i].name;
+                projectContainerTitle.appendChild(projectTitle);
+
+                // remove tasks LI from DOM
+                removeAllChildNodes(allTasks);
+                // create new LI for each task in the selected project task array
+                projectsArray[i].tasks.forEach((task) => {
+                    const newTask = document.createElement('li');
+                    newTask.classList.add('task');
+                    newTask.innerText = task;
+                    allTasks.appendChild(newTask);
+                })
+            }
+        }
+    } else {
+        tasksContainer.style.display = 'none'
     }
 };
 
-// class for projects
-class Project {
-    constructor(key, name) {
-        this.key = key;
-        this.name = name;
-    }
-};
+// create DOM elements
+function renderProjects() {
+    projectsArray.forEach((project) => {
+        const newProject = document.createElement('li');
+        newProject.dataset.projectId = project.id;
+        newProject.classList.add('project');
+        newProject.innerText = project.name;
+        if (project.id.toString() === selectedProjectID) {
+            newProject.classList.add('active-project');
+        }
+        allProjects.appendChild(newProject);
+    })
+}
 
-// removes all children from DOM element
-function clearChildren(element) {
+function removeAllChildNodes(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
-};
-
-// populates local storage with key value pair
-function populateLocalStorage(key,value) {
-    localStorage.setItem(key, value);
-};
-
-const projects = document.querySelector('.projects');
-
-// create projects list from local storage
-function projectsFromLocalStorage() {
-    // TRY THIS
-    // use localstorage keys and values to create projectsArray
-    // create an array of keys... Object.keys(localStorage);
-
-    // for (var i in localStorage) {}
-    // or...
-    // const keys = Object.keys(localStorage)
-    // for (let key of keys) {}
-
-    // maybe try using .map
-    
-    for (let i = 0; i < localStorage.length; i++) {
-        const newListItem = document.createElement('li');
-        newListItem.classList.add('list');
-        newListItem.dataset.projectId = i;
-
-        // newListItem.textContent = localStorage[i];
-        projects.appendChild(newListItem);
-        projectsArray.push(localStorage[i])
-
-        // adds project name as DIV to list item
-        const listName = document.createElement('div');
-        listName.classList.add('list-name');
-        listName.textContent = localStorage[i];
-        newListItem.appendChild(listName);
-
-        // adds 'X' to each list item being created
-        const deleteProjectIcon = document.createElement('div');
-        deleteProjectIcon.classList.add('delete-project-icon');
-        deleteProjectIcon.textContent = 'X';
-        newListItem.appendChild(deleteProjectIcon);
-    }
-};
-
-// renders all items in array in DOM, creates elements
-function render() {
-
-    if (localStorage.length > 0) {
-        projectsArray = [];
-        projectsFromLocalStorage();
-    } else {
-        populateLocalStorage(0, projectsArray[0]);
-    }
-
-    console.log(localStorage); // DELETE LATER; JUST FOR CHECKS
-    console.log(projectsArray); // DELETE LATER; JUST FOR CHECKS
-};
-
-render();
-
-const allDeleteProjectIcons = document.querySelectorAll('.delete-project-icon');
-
-function clickToDeleteProject() {
-    allDeleteProjectIcons.forEach((icon) => {
-        icon.addEventListener('click', () => {
-            const thisDataID = icon.parentElement.getAttribute('data-project-id');
-            console.log(thisDataID); // IT GRABS THE RIGHT DATA ID
-
-            clearChildren(projects);
-            removeFromProjectsArray(thisDataID);
-            removeFromLocalStorage(thisDataID);
-            render();
-
-        })
-    })
-};
-
-function removeFromLocalStorage(key) {
-    localStorage.removeItem(key);
-};
-
-function removeFromProjectsArray(key) {
-    projectsArray.splice(key, 1);
 }
-
-clickToDeleteProject();
-
-const addProjectInput = document.querySelector('.add-project');
-const submitNewProject = document.querySelector('.submit-project');
-// adds a new project to the main array and creates/renders all projects
-submitNewProject.addEventListener('click', e => {
-    
-    // if input field is blank do nothing
-    if (addProjectInput.value == '') return;
-
-    // prevent page from refreshing on submit
-    e.preventDefault();
-
-    // add new project to projects array
-    const projectName = addProjectInput.value;
-    projectsArray.push(projectName);
-
-    // clear localstorage before re-creating projects list
-    localStorage.clear();
-
-    // populate projects list from localstorage
-    for (let i = 0; i < projectsArray.length; i++) {
-        const newProject = new Project (i, projectsArray[i])
-        populateLocalStorage(i , newProject.name)
-    }
-
-    // remove project divs
-    clearChildren(projects);
-    
-    // creates divs from projects localstorage
-    render();
-
-    addProjectInput.value = ''; // empty the input box after submitting
-});
-
-localStorage.clear();
