@@ -1,35 +1,101 @@
-.add-new-project-div {
-    width: 13rem;
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
-.add-project {
-    width: 12rem;
-}
-
-.submit-project {
-    width: 12.5rem;
-}
-
-.list {
+.main-container {
     display: flex;
     justify-content: space-between;
-    
-    width: 12rem;
-    margin: 0.5rem 0rem;
-    padding: 0.5rem 0rem;
 }
 
-.list:hover {
-    background-color: lightblue;
+.projects-container {
+    width: 20rem;
+    margin-left: 1rem;
 }
 
-.delete-project-icon {
-    margin-right: 0.5rem;
+.projects-container-title {
+    font-weight: 800;
+    margin-top: 1rem;
 }
 
-.delete-project-icon:hover {
-    
+.projects-list {
+    list-style-type: none;
+    padding-left: 0rem;
+    margin-left: 1rem;
+}
+
+.project {
+    margin: 0.75rem 0rem;
+}
+
+.active-project {
+    font-weight: bold;
+}
+
+.delete-project-btn {
+    margin-top: 10rem;
+    margin-left: 1rem;
+    background-color: lightpink;
+    border-radius: 1rem;
+}
+
+.task-container-title {
+    font-weight: 800;
+}
+
+.new-task-form {
+    display: flex;
+}
+
+.create-task-btn {
+    border-style: none;
+    background-color:unset;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.new-task-input {
+    width: 20rem;
+    height: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.tasks-container {
+    padding: 1rem;
+    width: 30rem;;
+    margin-right: 1rem;
+    background-color: lightgray;
+    border-radius: 1rem;
+}
+
+.all-tasks {
+    padding-left: 0.5rem;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0rem;
+}
+
+.left-task-panel {
+    display: flex;
+}
+
+.complete-button {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+}
+
+.right-task-panel {
+    margin: 0rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.task-due-date {
+    display: flex;
+    white-space: nowrap;
 }

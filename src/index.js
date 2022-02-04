@@ -1,151 +1,220 @@
 import './style.css';
+import { format } from 'date-fns';
 
-let projectsArray = ['Main'];
 
-// SAVE FOR LATER
-class Task {
-    constructor (name, description, dueDate, priority, project) {
+const allProjects = document.querySelector('[data-all-projects]');
+const newProjectForm = document.querySelector('.new-project-form');
+const newProjectInput = document.querySelector('.new-project-input');
+
+const deleteProjectBtn = document.querySelector('.delete-project-btn');
+
+const taskContainerTitle = document.querySelector('.task-container-title');
+const tasksContainer = document.querySelector('.tasks-container')
+let allTasks = document.querySelector('.all-tasks');
+const newTaskContainerForm = document.querySelector('.new-task-form');
+const newTaskContainerInput = document.querySelector('.new-task-input');
+
+class Project {
+
+    constructor(name) {
+        this.id = Math.random();
         this.name = name;
+        this.tasks = []
+    }
+
+    setName(name) {
+        this.name = name;
+    }
+
+};
+
+class Task {
+
+    constructor(description, dueDate, priority) {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.project = project;
-        this.done = 0;
+        this.complete = 0;
+    }
+
+};
+
+// DEFAULT project. Cannot delete
+const mainProject = new Project('Main');
+
+// localstorage key for main project array
+const LOCAL_STORAGE_KEY = 'task.projects';
+const LOCAL_STORAGE_SELECTED_ID_KEY = 'task.selectedId';
+
+// get projects array from localstorage, else populate with default project
+const projectsArray = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [mainProject];
+
+// get selected project ID
+let selectedProjectID = localStorage.getItem(LOCAL_STORAGE_SELECTED_ID_KEY);
+
+// create new project, push to projects array, add to localstorage
+newProjectForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (newProjectInput.value === null || newProjectInput.value === '') return;
+    const projectName = newProjectInput.value;
+    const newProject = new Project(projectName);
+    projectsArray.push(newProject);
+    selectedProjectID = newProject.id.toString();
+    saveAndRender();
+    newProjectInput.value = '';
+});
+
+// select an active project and save the project ID as selected ID in localstorage
+allProjects.addEventListener('click', e => {
+    if (e.target.tagName.toLowerCase() === 'li') {
+        selectedProjectID = e.target.dataset.projectId;
+        saveAndRender();
+    }
+})
+
+// DELETE PROJECT
+deleteProjectBtn.addEventListener('click', e => {
+    if (selectedProjectID === "null" || selectedProjectID === '') {
+        return
+    }
+    // run only if there is a selected project ID
+    if (confirm('This will delete the selected project. Is that OK?')) {
+        // remove the project from the projectsArray
+        for (let i = 0; i < projectsArray.length; i++) {
+            if (selectedProjectID === projectsArray[i].id.toString()) {
+                console.log('this has been deleted');
+                projectsArray.splice(i, 1);
+                selectedProjectID = "null";
+                saveAndRender();
+            }
+        }
+    } else {
+        console.log('this project was not deleted');
+    }
+})
+
+newTaskContainerForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (newTaskContainerInput.value === null || newTaskContainerInput.value === '') {
+        return // do nothing if the input field is blank
+    }
+
+    // push task to project
+    for (let i = 0; i < projectsArray.length; i++) {
+        if (selectedProjectID === projectsArray[i].id.toString()) {
+            // create new Task
+
+            const taskName = newTaskContainerInput.value;
+            const dueDate = format(new Date(), 'MM/dd/yyyy');
+            const priority = 'Urgent';
+            const newTaskContainer = new Task(taskName, dueDate, priority);
+
+            projectsArray[i].tasks.push(newTaskContainer);
+        }
+    };
+
+    newTaskContainerInput.value = '';
+
+    saveAndRender();
+});
+
+function saveAndRender() {
+    save();
+    render();
+};
+
+saveAndRender();
+
+// saves newly created projects into localStorage
+function save() {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(projectsArray));
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_ID_KEY, selectedProjectID);
+};
+
+// renders what is in projectsArray
+function render() {
+    removeAllChildNodes(allProjects);
+    renderProjects();
+    renderTasks();
+
+    console.log(projectsArray);
+    console.log(localStorage);
+};
+
+function renderTasks() {
+    if (selectedProjectID === "null" || selectedProjectID === '') {
+        tasksContainer.style.display = 'none'
+    } else {
+        tasksContainer.style.display = "block"
+
+        // for the project that has the same ID as the selectedProjectId
+        // change the title, and list the tasks from the array in the project object
+        for (let i = 0; i < projectsArray.length; i++) {
+            if (projectsArray[i].id == selectedProjectID) {
+                // remove Project Title
+                removeAllChildNodes(taskContainerTitle);
+                // create new title
+                const projectTitle = document.createElement('div');
+                projectTitle.innerText = `Tasks // ${projectsArray[i].name}`;
+                taskContainerTitle.appendChild(projectTitle);
+
+                // remove tasks LI from DOM
+                removeAllChildNodes(allTasks);
+                // create new LI for each task in the selected project task array
+                projectsArray[i].tasks.forEach((task) => {
+                    const newTaskContainer = document.createElement('div');
+                    newTaskContainer.classList.add('task-container');
+                    allTasks.appendChild(newTaskContainer);
+
+                    // create left side panel
+                    const leftTaskPanel = document.createElement('div');
+                    leftTaskPanel.classList.add('left-task-panel');
+                    newTaskContainer.appendChild(leftTaskPanel);
+
+                    // create click-able circle icon
+                    const completeTaskBtn = document.createElement('button');
+                    completeTaskBtn.classList.add('complete-button')
+                    leftTaskPanel.appendChild(completeTaskBtn);
+
+                    // append task description
+                    const newTaskDescription = document.createElement('div');
+                    newTaskDescription.innerText = task.description;
+                    newTaskDescription.classList.add('task-description');
+                    leftTaskPanel.appendChild(newTaskDescription);
+
+                    // create right side panel
+                    const rightTaskPanel = document.createElement('div');
+                    rightTaskPanel.classList.add('right-task-panel');
+                    newTaskContainer.appendChild(rightTaskPanel);
+
+                    // append task due date
+                    const newTaskDueDate = document.createElement('div');
+                    newTaskDueDate.classList.add('task-due-date');
+                    newTaskDueDate.innerText = task.dueDate;
+                    rightTaskPanel.appendChild(newTaskDueDate);
+                })
+            }
+        }
     }
 };
 
-// class for projects
-class Project {
-    constructor(key, name) {
-        this.key = key;
-        this.name = name;
-    }
-};
+// create DOM elements
+function renderProjects() {
+    projectsArray.forEach((project) => {
+        const newProject = document.createElement('li');
+        newProject.dataset.projectId = project.id;
+        newProject.classList.add('project');
+        newProject.innerText = project.name;
+        if (project.id.toString() === selectedProjectID) {
+            newProject.classList.add('active-project');
+        }
+        allProjects.appendChild(newProject);
+    })
+}
 
-// removes all children from DOM element
-function clearChildren(element) {
+function removeAllChildNodes(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
-};
-
-// populates local storage with key value pair
-function populateLocalStorage(key,value) {
-    localStorage.setItem(key, value);
-};
-
-const projects = document.querySelector('.projects');
-
-// create projects list from local storage
-function projectsFromLocalStorage() {
-    // TRY THIS
-    // use localstorage keys and values to create projectsArray
-    // create an array of keys... Object.keys(localStorage);
-
-    // for (var i in localStorage) {}
-    // or...
-    // const keys = Object.keys(localStorage)
-    // for (let key of keys) {}
-
-    // maybe try using .map
-    
-    for (let i = 0; i < localStorage.length; i++) {
-        const newListItem = document.createElement('li');
-        newListItem.classList.add('list');
-        newListItem.dataset.projectId = i;
-
-        // newListItem.textContent = localStorage[i];
-        projects.appendChild(newListItem);
-        projectsArray.push(localStorage[i])
-
-        // adds project name as DIV to list item
-        const listName = document.createElement('div');
-        listName.classList.add('list-name');
-        listName.textContent = localStorage[i];
-        newListItem.appendChild(listName);
-
-        // adds 'X' to each list item being created
-        const deleteProjectIcon = document.createElement('div');
-        deleteProjectIcon.classList.add('delete-project-icon');
-        deleteProjectIcon.textContent = 'X';
-        newListItem.appendChild(deleteProjectIcon);
-    }
-};
-
-// renders all items in array in DOM, creates elements
-function render() {
-
-    if (localStorage.length > 0) {
-        projectsArray = [];
-        projectsFromLocalStorage();
-    } else {
-        populateLocalStorage(0, projectsArray[0]);
-    }
-
-    console.log(localStorage); // DELETE LATER; JUST FOR CHECKS
-    console.log(projectsArray); // DELETE LATER; JUST FOR CHECKS
-};
-
-render();
-
-const allDeleteProjectIcons = document.querySelectorAll('.delete-project-icon');
-
-function clickToDeleteProject() {
-    allDeleteProjectIcons.forEach((icon) => {
-        icon.addEventListener('click', () => {
-            const thisDataID = icon.parentElement.getAttribute('data-project-id');
-            console.log(thisDataID); // IT GRABS THE RIGHT DATA ID
-
-            clearChildren(projects);
-            removeFromProjectsArray(thisDataID);
-            removeFromLocalStorage(thisDataID);
-            render();
-
-        })
-    })
-};
-
-function removeFromLocalStorage(key) {
-    localStorage.removeItem(key);
-};
-
-function removeFromProjectsArray(key) {
-    projectsArray.splice(key, 1);
 }
-
-clickToDeleteProject();
-
-const addProjectInput = document.querySelector('.add-project');
-const submitNewProject = document.querySelector('.submit-project');
-// adds a new project to the main array and creates/renders all projects
-submitNewProject.addEventListener('click', e => {
-    
-    // if input field is blank do nothing
-    if (addProjectInput.value == '') return;
-
-    // prevent page from refreshing on submit
-    e.preventDefault();
-
-    // add new project to projects array
-    const projectName = addProjectInput.value;
-    projectsArray.push(projectName);
-
-    // clear localstorage before re-creating projects list
-    localStorage.clear();
-
-    // populate projects list from localstorage
-    for (let i = 0; i < projectsArray.length; i++) {
-        const newProject = new Project (i, projectsArray[i])
-        populateLocalStorage(i , newProject.name)
-    }
-
-    // remove project divs
-    clearChildren(projects);
-    
-    // creates divs from projects localstorage
-    render();
-
-    addProjectInput.value = ''; // empty the input box after submitting
-});
-
-localStorage.clear();
