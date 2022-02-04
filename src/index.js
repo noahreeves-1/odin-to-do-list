@@ -1,14 +1,18 @@
 import './style.css';
+import { format } from 'date-fns';
+
 
 const allProjects = document.querySelector('[data-all-projects]');
 const newProjectForm = document.querySelector('.new-project-form');
 const newProjectInput = document.querySelector('.new-project-input');
 
-const projectContainerTitle = document.querySelector('.project-container-title');
+const deleteProjectBtn = document.querySelector('.delete-project-btn');
+
+const taskContainerTitle = document.querySelector('.task-container-title');
 const tasksContainer = document.querySelector('.tasks-container')
 let allTasks = document.querySelector('.all-tasks');
-const newTaskForm = document.querySelector('.new-task-form');
-const newTaskInput = document.querySelector('.new-task-input');
+const newTaskContainerForm = document.querySelector('.new-task-form');
+const newTaskContainerInput = document.querySelector('.new-task-input');
 
 class Project {
 
@@ -55,6 +59,7 @@ newProjectForm.addEventListener('submit', e => {
     const projectName = newProjectInput.value;
     const newProject = new Project(projectName);
     projectsArray.push(newProject);
+    selectedProjectID = newProject.id.toString();
     saveAndRender();
     newProjectInput.value = '';
 });
@@ -67,15 +72,52 @@ allProjects.addEventListener('click', e => {
     }
 })
 
-newTaskForm.addEventListener('submit', e => {
+// DELETE PROJECT
+deleteProjectBtn.addEventListener('click', e => {
+    if (selectedProjectID === "null" || selectedProjectID === '') {
+        return
+    }
+    // run only if there is a selected project ID
+    if (confirm('This will delete the selected project. Is that OK?')) {
+        // remove the project from the projectsArray
+        for (let i = 0; i < projectsArray.length; i++) {
+            if (selectedProjectID === projectsArray[i].id.toString()) {
+                console.log('this has been deleted');
+                projectsArray.splice(i, 1);
+                selectedProjectID = "null";
+                saveAndRender();
+            }
+        }
+    } else {
+        console.log('this project was not deleted');
+    }
+})
+
+newTaskContainerForm.addEventListener('submit', e => {
     e.preventDefault();
-    if (newTaskInput.value === null || newTaskInput.value === '') {
+
+    if (newTaskContainerInput.value === null || newTaskContainerInput.value === '') {
         return // do nothing if the input field is blank
     }
-    const taskName = newTaskInput.value;
-    const dueDate = today().date();
-    const newTask = new Task(taskName, )
-})
+
+    // push task to project
+    for (let i = 0; i < projectsArray.length; i++) {
+        if (selectedProjectID === projectsArray[i].id.toString()) {
+            // create new Task
+
+            const taskName = newTaskContainerInput.value;
+            const dueDate = format(new Date(), 'MM/dd/yyyy');
+            const priority = 'Urgent';
+            const newTaskContainer = new Task(taskName, dueDate, priority);
+
+            projectsArray[i].tasks.push(newTaskContainer);
+        }
+    };
+
+    newTaskContainerInput.value = '';
+
+    saveAndRender();
+});
 
 function saveAndRender() {
     save();
@@ -101,33 +143,59 @@ function render() {
 };
 
 function renderTasks() {
-    if (selectedProjectID !== "null") {
+    if (selectedProjectID === "null" || selectedProjectID === '') {
+        tasksContainer.style.display = 'none'
+    } else {
         tasksContainer.style.display = "block"
 
         // for the project that has the same ID as the selectedProjectId
         // change the title, and list the tasks from the array in the project object
         for (let i = 0; i < projectsArray.length; i++) {
             if (projectsArray[i].id == selectedProjectID) {
-                // remove title
-                removeAllChildNodes(projectContainerTitle);
+                // remove Project Title
+                removeAllChildNodes(taskContainerTitle);
                 // create new title
                 const projectTitle = document.createElement('div');
-                projectTitle.innerText = projectsArray[i].name;
-                projectContainerTitle.appendChild(projectTitle);
+                projectTitle.innerText = `Tasks // ${projectsArray[i].name}`;
+                taskContainerTitle.appendChild(projectTitle);
 
                 // remove tasks LI from DOM
                 removeAllChildNodes(allTasks);
                 // create new LI for each task in the selected project task array
                 projectsArray[i].tasks.forEach((task) => {
-                    const newTask = document.createElement('li');
-                    newTask.classList.add('task');
-                    newTask.innerText = task;
-                    allTasks.appendChild(newTask);
+                    const newTaskContainer = document.createElement('div');
+                    newTaskContainer.classList.add('task-container');
+                    allTasks.appendChild(newTaskContainer);
+
+                    // create left side panel
+                    const leftTaskPanel = document.createElement('div');
+                    leftTaskPanel.classList.add('left-task-panel');
+                    newTaskContainer.appendChild(leftTaskPanel);
+
+                    // create click-able circle icon
+                    const completeTaskBtn = document.createElement('button');
+                    completeTaskBtn.classList.add('complete-button')
+                    leftTaskPanel.appendChild(completeTaskBtn);
+
+                    // append task description
+                    const newTaskDescription = document.createElement('div');
+                    newTaskDescription.innerText = task.description;
+                    newTaskDescription.classList.add('task-description');
+                    leftTaskPanel.appendChild(newTaskDescription);
+
+                    // create right side panel
+                    const rightTaskPanel = document.createElement('div');
+                    rightTaskPanel.classList.add('right-task-panel');
+                    newTaskContainer.appendChild(rightTaskPanel);
+
+                    // append task due date
+                    const newTaskDueDate = document.createElement('div');
+                    newTaskDueDate.classList.add('task-due-date');
+                    newTaskDueDate.innerText = task.dueDate;
+                    rightTaskPanel.appendChild(newTaskDueDate);
                 })
             }
         }
-    } else {
-        tasksContainer.style.display = 'none'
     }
 };
 
