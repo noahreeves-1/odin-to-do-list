@@ -3576,7 +3576,7 @@ const deleteProjectBtn = document.querySelector('.delete-project-btn');
 
 const taskContainerTitle = document.querySelector('.task-container-title');
 const tasksContainer = document.querySelector('.tasks-container')
-let allTasks = document.querySelector('.all-tasks');
+const allTasks = document.querySelector('.all-tasks');
 const newTaskContainerForm = document.querySelector('.new-task-form');
 const newTaskContainerInput = document.querySelector('.new-task-input');
 
@@ -3597,10 +3597,15 @@ class Project {
 class Task {
 
     constructor(description, dueDate, priority) {
+        this.id = Math.random();
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.complete = 0;
+        this.complete = false;
+    }
+
+    completeTask() {
+        this.complete = !this.complete;
     }
 
 };
@@ -3615,8 +3620,16 @@ const LOCAL_STORAGE_SELECTED_ID_KEY = 'task.selectedId';
 // get projects array from localstorage, else populate with default project
 const projectsArray = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [mainProject];
 
+const newProjectsArray = projectsArray.map(project => {
+    return new Project(project.name)
+})
+
+console.log(newProjectsArray)
+
 // get selected project ID
 let selectedProjectID = localStorage.getItem(LOCAL_STORAGE_SELECTED_ID_KEY);
+
+saveAndRender();
 
 // create new project, push to projects array, add to localstorage
 newProjectForm.addEventListener('submit', e => {
@@ -3636,7 +3649,7 @@ allProjects.addEventListener('click', e => {
         selectedProjectID = e.target.dataset.projectId;
         saveAndRender();
     }
-})
+});
 
 // DELETE PROJECT
 deleteProjectBtn.addEventListener('click', e => {
@@ -3657,7 +3670,7 @@ deleteProjectBtn.addEventListener('click', e => {
     } else {
         console.log('this project was not deleted');
     }
-})
+});
 
 newTaskContainerForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -3685,12 +3698,53 @@ newTaskContainerForm.addEventListener('submit', e => {
     saveAndRender();
 });
 
+// click the complete task icon to change the status of task from 0 to 1
+
+const completeTaskButtons = document.querySelectorAll('.complete-task-btn');
+
+completeTaskButtons.forEach((button, index) => {
+    button.addEventListener('click', e => {
+        // when button is clicked, change the status of this task complete status from 0 to 1
+        // make sure if complete is set to 1, its display is changed to none
+        // then save the tasks array to localstorage
+        const currentProject = projectsArray.find(project => {
+                return project.id.toString() === selectedProjectID;
+        });
+
+        if (currentProject.tasks[index] instanceof Task) {
+            console.log('yes')
+        }
+
+        console.log(currentProject.tasks[index])
+
+        console.log(currentProject);
+        
+        // for (let i = 0; i < projectsArray.length; i++) {
+
+        //     if (selectedProjectID === projectsArray[i].id.toString()) {
+
+        //         console.log(e.target.parentNode.lastChild) // THIS GETS THE DESCRIPTION
+
+        //         taskDescriptions.forEach(description => {
+        //             if (description.value === projectsArray[i].description) {
+        //                 console.log('hello');
+        //             }
+        //         })
+
+        //         console.log(projectsArray[i].tasks);
+        //         // how can i change the complete task in this project tasks array?
+        //         // array[0?] how do I select this...
+        //     }
+        // }
+    })
+});
+
+// FUNCTIONS //
+
 function saveAndRender() {
     save();
     render();
 };
-
-saveAndRender();
 
 // saves newly created projects into localStorage
 function save() {
@@ -3740,7 +3794,7 @@ function renderTasks() {
 
                     // create click-able circle icon
                     const completeTaskBtn = document.createElement('button');
-                    completeTaskBtn.classList.add('complete-button')
+                    completeTaskBtn.classList.add('complete-task-btn');
                     leftTaskPanel.appendChild(completeTaskBtn);
 
                     // append task description
@@ -3777,13 +3831,13 @@ function renderProjects() {
         }
         allProjects.appendChild(newProject);
     })
-}
+};
 
 function removeAllChildNodes(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
-}
+};
 })();
 
 /******/ })()
