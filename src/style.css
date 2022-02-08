@@ -46,6 +46,10 @@ body {
     display: flex;
 }
 
+.completed-task {
+    text-decoration: line-through;
+}
+
 .create-task-btn {
     border-style: none;
     background-color:unset;
