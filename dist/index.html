@@ -20,6 +20,7 @@
                 <button class="create-project-btn">Add New Project</button>
             </form>
 
+            <button class="delete-project-btn">Delete Project</button>
         </div>
 
         <div class="tasks-container">
@@ -31,10 +32,26 @@
                 <button class="create-task-btn">+</button>
                 <input class="new-task-input" type="text" placeholder="New Task Name">
             </form>
+            <button id="edit-task-btn">Edit Task</button>
+        </div>
+
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-header">Edit Task</div>
+        <div class="modal-content">
+            <input type="checkbox" class="edit-task-complete"></input>
+            <input type="text" class="edit-task-description"></input>
+            <input type="date" class="edit-task-due-date"></input>
+            <select type="text" class="edit-task-priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <span class="save-task-edits-btn">Save</span>
+            <span class="close-edit-task-btn">Close</span>
         </div>
     </div>
-    
-    <button class="delete-project-btn">Delete Project</button>
     
     <script defer src="bundle.js"></script>
 </body>

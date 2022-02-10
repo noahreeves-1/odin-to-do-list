@@ -36,6 +36,9 @@ body {
     margin-left: 1rem;
     background-color: lightpink;
     border-radius: 1rem;
+    height: 3rem;
+    width: 10rem;
+    font-size: 1rem;
 }
 
 .task-container-title {
@@ -102,4 +105,76 @@ body {
 .task-due-date {
     display: flex;
     white-space: nowrap;
+}
+
+.selected-task {
+    font-weight: 800;
+}
+
+#edit-task-btn {
+    display: flex;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3rem;
+    width: 10rem;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    border-color: lightgray;
+    border-radius: 2rem;
+}
+
+.modal-header {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    color: white;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 50%;
+  top: 50%;
+  width: 50rem; /* Half width */
+  height: 20rem; /* Half height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  transform: translate(-50%, -50%);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 1rem auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.save-task-edits-btn {
+  color: #aaa;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 5rem;
+}
+
+.close-edit-task-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 5rem;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

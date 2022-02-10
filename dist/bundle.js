@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n    font-family:Verdana, Geneva, Tahoma, sans-serif\n}\n\n.main-container {\n    display: flex;\n    justify-content: space-between;\n}\n\n.projects-container {\n    width: 20rem;\n    margin-left: 1rem;\n}\n\n.projects-container-title {\n    font-weight: 800;\n    margin-top: 1rem;\n}\n\n.projects-list {\n    list-style-type: none;\n    padding-left: 0rem;\n    margin-left: 1rem;\n}\n\n.project {\n    margin: 0.75rem 0rem;\n}\n\n.active-project {\n    font-weight: bold;\n}\n\n.delete-project-btn {\n    margin-top: 10rem;\n    margin-left: 1rem;\n    background-color: lightpink;\n    border-radius: 1rem;\n}\n\n.task-container-title {\n    font-weight: 800;\n}\n\n.new-task-form {\n    display: flex;\n}\n\n.completed-task {\n    text-decoration: line-through;\n}\n\n.create-task-btn {\n    border-style: none;\n    background-color:unset;\n    font-weight: 800;\n    font-size: 1.5rem;\n}\n\n.new-task-input {\n    width: 20rem;\n    height: 1.5rem;\n    margin-left: 0.5rem;\n}\n\n.tasks-container {\n    padding: 1rem;\n    width: 30rem;;\n    margin-right: 1rem;\n    background-color: lightgray;\n    border-radius: 1rem;\n}\n\n.all-tasks {\n    padding-left: 0.5rem;\n}\n\n.task-container {\n    display: flex;\n    justify-content: space-between;\n    margin: 1rem 0rem;\n}\n\n.left-task-panel {\n    display: flex;\n}\n\n.complete-button {\n    width: 1rem;\n    height: 1rem;\n    border-radius: 1rem;\n    margin-right: 1rem;\n}\n\n.right-task-panel {\n    margin: 0rem 1rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\n.task-due-date {\n    display: flex;\n    white-space: nowrap;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;IACI;AACJ;;AAEA;IACI,aAAa;IACb,8BAA8B;AAClC;;AAEA;IACI,YAAY;IACZ,iBAAiB;AACrB;;AAEA;IACI,gBAAgB;IAChB,gBAAgB;AACpB;;AAEA;IACI,qBAAqB;IACrB,kBAAkB;IAClB,iBAAiB;AACrB;;AAEA;IACI,oBAAoB;AACxB;;AAEA;IACI,iBAAiB;AACrB;;AAEA;IACI,iBAAiB;IACjB,iBAAiB;IACjB,2BAA2B;IAC3B,mBAAmB;AACvB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,6BAA6B;AACjC;;AAEA;IACI,kBAAkB;IAClB,sBAAsB;IACtB,gBAAgB;IAChB,iBAAiB;AACrB;;AAEA;IACI,YAAY;IACZ,cAAc;IACd,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,kBAAkB;IAClB,2BAA2B;IAC3B,mBAAmB;AACvB;;AAEA;IACI,oBAAoB;AACxB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,WAAW;IACX,YAAY;IACZ,mBAAmB;IACnB,kBAAkB;AACtB;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,sBAAsB;IACtB,uBAAuB;AAC3B;;AAEA;IACI,aAAa;IACb,mBAAmB;AACvB","sourcesContent":["body {\n    font-family:Verdana, Geneva, Tahoma, sans-serif\n}\n\n.main-container {\n    display: flex;\n    justify-content: space-between;\n}\n\n.projects-container {\n    width: 20rem;\n    margin-left: 1rem;\n}\n\n.projects-container-title {\n    font-weight: 800;\n    margin-top: 1rem;\n}\n\n.projects-list {\n    list-style-type: none;\n    padding-left: 0rem;\n    margin-left: 1rem;\n}\n\n.project {\n    margin: 0.75rem 0rem;\n}\n\n.active-project {\n    font-weight: bold;\n}\n\n.delete-project-btn {\n    margin-top: 10rem;\n    margin-left: 1rem;\n    background-color: lightpink;\n    border-radius: 1rem;\n}\n\n.task-container-title {\n    font-weight: 800;\n}\n\n.new-task-form {\n    display: flex;\n}\n\n.completed-task {\n    text-decoration: line-through;\n}\n\n.create-task-btn {\n    border-style: none;\n    background-color:unset;\n    font-weight: 800;\n    font-size: 1.5rem;\n}\n\n.new-task-input {\n    width: 20rem;\n    height: 1.5rem;\n    margin-left: 0.5rem;\n}\n\n.tasks-container {\n    padding: 1rem;\n    width: 30rem;;\n    margin-right: 1rem;\n    background-color: lightgray;\n    border-radius: 1rem;\n}\n\n.all-tasks {\n    padding-left: 0.5rem;\n}\n\n.task-container {\n    display: flex;\n    justify-content: space-between;\n    margin: 1rem 0rem;\n}\n\n.left-task-panel {\n    display: flex;\n}\n\n.complete-button {\n    width: 1rem;\n    height: 1rem;\n    border-radius: 1rem;\n    margin-right: 1rem;\n}\n\n.right-task-panel {\n    margin: 0rem 1rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\n.task-due-date {\n    display: flex;\n    white-space: nowrap;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n    font-family:Verdana, Geneva, Tahoma, sans-serif\n}\n\n.main-container {\n    display: flex;\n    justify-content: space-between;\n}\n\n.projects-container {\n    width: 20rem;\n    margin-left: 1rem;\n}\n\n.projects-container-title {\n    font-weight: 800;\n    margin-top: 1rem;\n}\n\n.projects-list {\n    list-style-type: none;\n    padding-left: 0rem;\n    margin-left: 1rem;\n}\n\n.project {\n    margin: 0.75rem 0rem;\n}\n\n.active-project {\n    font-weight: bold;\n}\n\n.delete-project-btn {\n    margin-top: 10rem;\n    margin-left: 1rem;\n    background-color: lightpink;\n    border-radius: 1rem;\n    height: 3rem;\n    width: 10rem;\n    font-size: 1rem;\n}\n\n.task-container-title {\n    font-weight: 800;\n}\n\n.new-task-form {\n    display: flex;\n}\n\n.completed-task {\n    text-decoration: line-through;\n}\n\n.create-task-btn {\n    border-style: none;\n    background-color:unset;\n    font-weight: 800;\n    font-size: 1.5rem;\n}\n\n.new-task-input {\n    width: 20rem;\n    height: 1.5rem;\n    margin-left: 0.5rem;\n}\n\n.tasks-container {\n    padding: 1rem;\n    width: 30rem;;\n    margin-right: 1rem;\n    background-color: lightgray;\n    border-radius: 1rem;\n}\n\n.all-tasks {\n    padding-left: 0.5rem;\n}\n\n.task-container {\n    display: flex;\n    justify-content: space-between;\n    margin: 1rem 0rem;\n}\n\n.left-task-panel {\n    display: flex;\n}\n\n.complete-button {\n    width: 1rem;\n    height: 1rem;\n    border-radius: 1rem;\n    margin-right: 1rem;\n}\n\n.right-task-panel {\n    margin: 0rem 1rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\n.task-due-date {\n    display: flex;\n    white-space: nowrap;\n}\n\n.selected-task {\n    font-weight: 800;\n}\n\n#edit-task-btn {\n    display: flex;\n    margin-top: 1rem;\n    margin-left: auto;\n    margin-right: auto;\n    height: 3rem;\n    width: 10rem;\n    font-size: 1rem;\n    justify-content: center;\n    align-items: center;\n    background-color: lightblue;\n    border-color: lightgray;\n    border-radius: 2rem;\n}\n\n.modal-header {\n    margin-top: 1rem;\n    margin-left: 1rem;\n    color: white;\n    font-weight: 800;\n    font-size: 1.5rem;\n}\n\n.modal {\n  display: none; /* Hidden by default */\n  position: fixed; /* Stay in place */\n  z-index: 1; /* Sit on top */\n  left: 50%;\n  top: 50%;\n  width: 50rem; /* Half width */\n  height: 20rem; /* Half height */\n  overflow: auto; /* Enable scroll if needed */\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */\n  transform: translate(-50%, -50%);\n}\n\n.modal-content {\n  background-color: #fefefe;\n  margin: 1rem auto; /* 15% from the top and centered */\n  padding: 20px;\n  border: 1px solid #888;\n  width: 80%; /* Could be more or less, depending on screen size */\n}\n\n.save-task-edits-btn {\n  color: #aaa;\n  float: left;\n  font-size: 28px;\n  font-weight: bold;\n  margin-top: 5rem;\n}\n\n.close-edit-task-btn {\n  color: #aaa;\n  float: right;\n  font-size: 28px;\n  font-weight: bold;\n  margin-top: 5rem;\n}\n\n.close:hover,\n.close:focus {\n  color: black;\n  text-decoration: none;\n  cursor: pointer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;IACI;AACJ;;AAEA;IACI,aAAa;IACb,8BAA8B;AAClC;;AAEA;IACI,YAAY;IACZ,iBAAiB;AACrB;;AAEA;IACI,gBAAgB;IAChB,gBAAgB;AACpB;;AAEA;IACI,qBAAqB;IACrB,kBAAkB;IAClB,iBAAiB;AACrB;;AAEA;IACI,oBAAoB;AACxB;;AAEA;IACI,iBAAiB;AACrB;;AAEA;IACI,iBAAiB;IACjB,iBAAiB;IACjB,2BAA2B;IAC3B,mBAAmB;IACnB,YAAY;IACZ,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,6BAA6B;AACjC;;AAEA;IACI,kBAAkB;IAClB,sBAAsB;IACtB,gBAAgB;IAChB,iBAAiB;AACrB;;AAEA;IACI,YAAY;IACZ,cAAc;IACd,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,kBAAkB;IAClB,2BAA2B;IAC3B,mBAAmB;AACvB;;AAEA;IACI,oBAAoB;AACxB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,WAAW;IACX,YAAY;IACZ,mBAAmB;IACnB,kBAAkB;AACtB;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,sBAAsB;IACtB,uBAAuB;AAC3B;;AAEA;IACI,aAAa;IACb,mBAAmB;AACvB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,aAAa;IACb,gBAAgB;IAChB,iBAAiB;IACjB,kBAAkB;IAClB,YAAY;IACZ,YAAY;IACZ,eAAe;IACf,uBAAuB;IACvB,mBAAmB;IACnB,2BAA2B;IAC3B,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,gBAAgB;IAChB,iBAAiB;IACjB,YAAY;IACZ,gBAAgB;IAChB,iBAAiB;AACrB;;AAEA;EACE,aAAa,EAAE,sBAAsB;EACrC,eAAe,EAAE,kBAAkB;EACnC,UAAU,EAAE,eAAe;EAC3B,SAAS;EACT,QAAQ;EACR,YAAY,EAAE,eAAe;EAC7B,aAAa,EAAE,gBAAgB;EAC/B,cAAc,EAAE,4BAA4B;EAC5C,4BAA4B,EAAE,mBAAmB;EACjD,iCAAiC,EAAE,qBAAqB;EACxD,gCAAgC;AAClC;;AAEA;EACE,yBAAyB;EACzB,iBAAiB,EAAE,kCAAkC;EACrD,aAAa;EACb,sBAAsB;EACtB,UAAU,EAAE,oDAAoD;AAClE;;AAEA;EACE,WAAW;EACX,WAAW;EACX,eAAe;EACf,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAe;EACf,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;;EAEE,YAAY;EACZ,qBAAqB;EACrB,eAAe;AACjB","sourcesContent":["body {\n    font-family:Verdana, Geneva, Tahoma, sans-serif\n}\n\n.main-container {\n    display: flex;\n    justify-content: space-between;\n}\n\n.projects-container {\n    width: 20rem;\n    margin-left: 1rem;\n}\n\n.projects-container-title {\n    font-weight: 800;\n    margin-top: 1rem;\n}\n\n.projects-list {\n    list-style-type: none;\n    padding-left: 0rem;\n    margin-left: 1rem;\n}\n\n.project {\n    margin: 0.75rem 0rem;\n}\n\n.active-project {\n    font-weight: bold;\n}\n\n.delete-project-btn {\n    margin-top: 10rem;\n    margin-left: 1rem;\n    background-color: lightpink;\n    border-radius: 1rem;\n    height: 3rem;\n    width: 10rem;\n    font-size: 1rem;\n}\n\n.task-container-title {\n    font-weight: 800;\n}\n\n.new-task-form {\n    display: flex;\n}\n\n.completed-task {\n    text-decoration: line-through;\n}\n\n.create-task-btn {\n    border-style: none;\n    background-color:unset;\n    font-weight: 800;\n    font-size: 1.5rem;\n}\n\n.new-task-input {\n    width: 20rem;\n    height: 1.5rem;\n    margin-left: 0.5rem;\n}\n\n.tasks-container {\n    padding: 1rem;\n    width: 30rem;;\n    margin-right: 1rem;\n    background-color: lightgray;\n    border-radius: 1rem;\n}\n\n.all-tasks {\n    padding-left: 0.5rem;\n}\n\n.task-container {\n    display: flex;\n    justify-content: space-between;\n    margin: 1rem 0rem;\n}\n\n.left-task-panel {\n    display: flex;\n}\n\n.complete-button {\n    width: 1rem;\n    height: 1rem;\n    border-radius: 1rem;\n    margin-right: 1rem;\n}\n\n.right-task-panel {\n    margin: 0rem 1rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\n.task-due-date {\n    display: flex;\n    white-space: nowrap;\n}\n\n.selected-task {\n    font-weight: 800;\n}\n\n#edit-task-btn {\n    display: flex;\n    margin-top: 1rem;\n    margin-left: auto;\n    margin-right: auto;\n    height: 3rem;\n    width: 10rem;\n    font-size: 1rem;\n    justify-content: center;\n    align-items: center;\n    background-color: lightblue;\n    border-color: lightgray;\n    border-radius: 2rem;\n}\n\n.modal-header {\n    margin-top: 1rem;\n    margin-left: 1rem;\n    color: white;\n    font-weight: 800;\n    font-size: 1.5rem;\n}\n\n.modal {\n  display: none; /* Hidden by default */\n  position: fixed; /* Stay in place */\n  z-index: 1; /* Sit on top */\n  left: 50%;\n  top: 50%;\n  width: 50rem; /* Half width */\n  height: 20rem; /* Half height */\n  overflow: auto; /* Enable scroll if needed */\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */\n  transform: translate(-50%, -50%);\n}\n\n.modal-content {\n  background-color: #fefefe;\n  margin: 1rem auto; /* 15% from the top and centered */\n  padding: 20px;\n  border: 1px solid #888;\n  width: 80%; /* Could be more or less, depending on screen size */\n}\n\n.save-task-edits-btn {\n  color: #aaa;\n  float: left;\n  font-size: 28px;\n  font-weight: bold;\n  margin-top: 5rem;\n}\n\n.close-edit-task-btn {\n  color: #aaa;\n  float: right;\n  font-size: 28px;\n  font-weight: bold;\n  margin-top: 5rem;\n}\n\n.close:hover,\n.close:focus {\n  color: black;\n  text-decoration: none;\n  cursor: pointer;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3579,6 +3579,10 @@ const allTasks = document.querySelector(".all-tasks");
 const newTaskContainerForm = document.querySelector(".new-task-form");
 const newTaskContainerInput = document.querySelector(".new-task-input");
 
+const editTaskButton = document.querySelector('#edit-task-btn');
+const taskModal = document.querySelector('#taskModal');
+const closeTaskModal = document.querySelector('.close-edit-task-btn');
+
 class Project {
     constructor(name, tasks, id) {
         if (id) {
@@ -3586,17 +3590,16 @@ class Project {
         } else {
             this.id = Math.random();
         }
+
         this.name = name;
+
         if (tasks) {
             this.tasks = tasks.map(
-                (task) => new Task(task.description, task.dueDate, task.priority)
+                (task) => new Task(task.description, task.dueDate, task.priority, task.complete, task.id)
             );
+        } else {
+            this.tasks = []
         }
-
-        if (!tasks) {
-            this.tasks = [];
-        }
-        // this.tasks =  || [];
     }
 
     setName(name) {
@@ -3605,12 +3608,16 @@ class Project {
 }
 
 class Task {
-    constructor(description, dueDate, priority) {
-        this.id = Math.random();
+    constructor(description, dueDate, priority, complete = false, id = Math.random()) {
+        if (id) {
+            this.id = id;
+        } else {
+            this.id = Math.random();
+        }
         this.description = description;
         this.dueDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(new Date(dueDate), 'MM-dd-yyyy');
         this.priority = priority;
-        this.complete = false;
+        this.complete = complete;
     }
 
     completeTask() {
@@ -3624,11 +3631,12 @@ const mainProject = new Project("Main");
 // localstorage key for main project array
 const LOCAL_STORAGE_KEY = "task.projects";
 const LOCAL_STORAGE_SELECTED_ID_KEY = "task.selectedId";
+const LOCAL_STORAGE_SELECTED_TASK_KEY = 'task.selectedTaskId'
 
 // get projects array from localstorage, else populate with default project
 const projectsArray = localStorage.getItem(LOCAL_STORAGE_KEY)
     ? JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).map(
-        (project) => new Project(project.name, project.tasks, project.id)
+        (project) => new Project(project.name, project.tasks, project.id, project.complete)
     )
     : [mainProject].map((project) => new Project(project.name, project.tasks));
 
@@ -3640,6 +3648,7 @@ const projectsArray = localStorage.getItem(LOCAL_STORAGE_KEY)
 
 // get selected project ID
 let selectedProjectID = localStorage.getItem(LOCAL_STORAGE_SELECTED_ID_KEY);
+let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_KEY);
 
 saveAndRender();
 
@@ -3702,7 +3711,7 @@ newTaskContainerForm.addEventListener("submit", (e) => {
 
             const taskName = newTaskContainerInput.value;
             const dueDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(new Date(), "MM/dd/yyyy");
-            const priority = "Urgent";
+            const priority = "Low";
             const newTaskContainer = new Task(taskName, dueDate, priority);
 
             projectsArray[i].tasks.push(newTaskContainer);
@@ -3718,49 +3727,73 @@ newTaskContainerForm.addEventListener("submit", (e) => {
 // click the complete task icon to change the status of task from 0 to 1
 
 const completeTaskButtons = document.querySelectorAll(".complete-task-btn");
+// create queryselectorall for all LI
+// 
 
-completeTaskButtons.forEach((button, index) => {
-    button.addEventListener("click", (e) => {
+const editTaskComplete = document.querySelector('.edit-task-complete');
+const editTaskDueDate = document.querySelector('.edit-task-due-date');
+const editTaskDescription = document.querySelector('.edit-task-description');
+const editTaskPriority = document.querySelector('.edit-task-priority');
 
-        const currentProject = projectsArray.find((project) => {
-            return project.id.toString() === selectedProjectID;
-        });
+const allTaskContainers = document.querySelectorAll('.task-container');
 
-        const clickedTask = currentProject.tasks[index];
-
-        clickedTask.completeTask();
-
-        if (clickedTask.complete) {
-            button.parentNode.parentNode.classList.add('completed-task');
-        } else {
-            button.parentNode.parentNode.classList.remove('completed-task');
-        };
-
-        save();
-
-        console.log(projectsArray);
-        console.log(localStorage.getItem(LOCAL_STORAGE_KEY));
-
-        // when button is clicked, change the status of this task complete status from 0 to 1
-        // make sure if complete is set to 1, its display is changed to none
-        // then save the tasks array to localstorage
-
-        // console.log(currentProject);
-        // for (let i = 0; i < projectsArray.length; i++) {
-        //     if (selectedProjectID === projectsArray[i].id.toString()) {
-        //         console.log(e.target.parentNode.lastChild) // THIS GETS THE DESCRIPTION
-        //         taskDescriptions.forEach(description => {
-        //             if (description.value === projectsArray[i].description) {
-        //                 console.log('hello');
-        //             }
-        //         })
-        //         console.log(projectsArray[i].tasks);
-        //         // how can i change the complete task in this project tasks array?
-        //         // array[0?] how do I select this...
-        //     }
-        // }
-    });
+const currentProject = projectsArray.find((project) => {
+    return project.id.toString() === selectedProjectID;
 });
+
+editTaskButton.addEventListener('click', (e) => {
+    // when clicked, open up a modal
+    taskModal.style.display = 'block';
+
+    const currentTask = currentProject.tasks.find((task) => {
+        return task.id.toString() === selectedTaskId.toString();
+    });
+
+    console.log(currentProject);
+    console.log(currentTask);
+
+    // get each data point from the selected task
+    if (currentTask.id.toString() === selectedTaskId.toString()) {
+        // complete checkbox
+        if (currentTask.complete) {
+            editTaskComplete.checked = true;
+        } else {
+            editTaskComplete.checked = false;
+        }
+        // task description
+        editTaskDescription.value = currentTask.description;
+        editTaskDueDate.value = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(Date.parse(currentTask.dueDate), 'yyyy-MM-dd');
+        editTaskPriority.value = currentTask.priority;
+    }
+
+    // allow each data point to be edited (complete, change description, change due date, change priority)
+    // if I click "Cancel", close modal and do nothing
+    // if I click "Save", save data back to array, save data to localstorage, render tasks
+});
+
+const saveTaskEditsBtn = document.querySelector('.save-task-edits-btn');
+
+saveTaskEditsBtn.addEventListener('click', (e) => {
+    const currentTask = currentProject.tasks.find((task) => {
+        return task.id.toString() === selectedTaskId.toString();
+    });
+    // save task complete task value
+    currentTask.complete = editTaskComplete.checked;
+    // save task description
+    currentTask.description = editTaskDescription.value;
+    // save task due date
+    currentTask.dueDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(Date.parse(editTaskDueDate.value), 'MM-dd-yyyy');
+    // save task priority
+    currentTask.priority = editTaskPriority.value;
+    // render tasks with updated values
+    saveAndRender();
+    // close modal
+    taskModal.style.display = 'none';
+})
+
+closeTaskModal.addEventListener('click', (e) => {
+    taskModal.style.display = 'none';
+})
 
 // FUNCTIONS //
 
@@ -3773,6 +3806,7 @@ function saveAndRender() {
 function save() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(projectsArray));
     localStorage.setItem(LOCAL_STORAGE_SELECTED_ID_KEY, selectedProjectID);
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_TASK_KEY, selectedTaskId);
 }
 
 // renders what is in projectsArray
@@ -3805,15 +3839,31 @@ function renderTasks() {
                 // remove tasks LI from DOM
                 removeAllChildNodes(allTasks);
                 // create new LI for each task in the selected project task array
-                projectsArray[i].tasks.forEach((task) => {
+                projectsArray[i].tasks.forEach((task, index) => {
                     const newTaskContainer = document.createElement("div");
                     newTaskContainer.classList.add("task-container");
+
+                    // create addeventlistener for each task-container
+                    newTaskContainer.addEventListener('click', (e) => {
+
+                        const clickedTask = currentProject.tasks[index];
+
+                        selectedTaskId = clickedTask.id;
+
+                        saveAndRender();
+                    })
 
                     if (task.complete) {
                         newTaskContainer.classList.add('completed-task');
                     } else {
                         newTaskContainer.classList.remove('completed-task');
                     };
+
+                    if (task.id == selectedTaskId) {
+                        newTaskContainer.classList.add('selected-task');
+                    } else {
+                        newTaskContainer.classList.remove('selected-task');
+                    }
 
 
                     allTasks.appendChild(newTaskContainer);
@@ -3825,8 +3875,26 @@ function renderTasks() {
 
                     // create click-able circle icon
                     const completeTaskBtn = document.createElement("input");
+
+                    // add eventlistener to each button
+                    completeTaskBtn.addEventListener("click", (e) => {
+
+                        const clickedTask = currentProject.tasks[index];
+
+                        clickedTask.completeTask();
+
+                        if (clickedTask.complete) {
+                            completeTaskBtn.parentNode.parentNode.classList.add('completed-task');
+                        } else {
+                            completeTaskBtn.parentNode.parentNode.classList.remove('completed-task');
+                        };
+
+                        save();
+                    });
+
                     completeTaskBtn.setAttribute('type', 'checkbox');
                     completeTaskBtn.classList.add("complete-task-btn");
+                    completeTaskBtn.checked = task.complete;
                     //  IF complete task attribute = true, update classname
                     // save tasks to local storage and render
                     leftTaskPanel.appendChild(completeTaskBtn);
